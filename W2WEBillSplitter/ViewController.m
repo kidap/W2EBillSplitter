@@ -102,7 +102,7 @@
     } else {
       tipPercentage =[NSDecimalNumber decimalNumberWithString:@"0"];
     }
-    
+
     tipPercentage = [tipPercentage decimalNumberByAdding: [NSDecimalNumber decimalNumberWithString:@"1"]];
     splitAmount = [[billAmount decimalNumberByMultiplyingBy:tipPercentage] decimalNumberByDividingBy:peopleSplittingSlider];
     
@@ -111,6 +111,15 @@
     [splitAmountFormat setMaximumFractionDigits:2];
     [splitAmountFormat setNumberStyle:NSNumberFormatterCurrencyStyle];
 
+    self.splitAmount.text = [splitAmountFormat stringFromNumber:splitAmount];
+  } else {
+    splitAmount = [NSDecimalNumber decimalNumberWithString:@"0"];
+    
+    NSNumberFormatter *splitAmountFormat = [[NSNumberFormatter alloc] init];
+    [splitAmountFormat setMinimumFractionDigits:2];
+    [splitAmountFormat setMaximumFractionDigits:2];
+    [splitAmountFormat setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
     self.splitAmount.text = [splitAmountFormat stringFromNumber:splitAmount];
   }
   
